@@ -1,26 +1,59 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Autocomplete }
+import {
+    TextField,
+    Card,
+    CardActions,
+    CardContent
+} from '@material-ui/core'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const ActionView = props => {
+    reutrn (
+        <Autocomplete
+
+            id ="combo-box-demo"
+            options={top100Films}
+            getOptionLabel={option => option.title}
+            style={{ width: 300 }}
+            renderInput={params => (
+                <TextField {...params} label="Combo box" variant="outlined" fullWidth />
+            )}
+        />
+    )
+
+
+const ContentView = props => {
+    const {id, name} = props.item
+    return (
+        <div>
+            <label>{id}</label>
+            <label>{name}</label>
+        </div>
+    )
+}
+
+
+class App extends React.Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            items:[
+                {id: 's19008', name: 'shinzato'} 
+            ], 
+            item : {id:'undef', name:'undef'}
+        }
+    }
+    render () {
+        return (
+            <Card>
+                <CardActions>
+                    <ActionView items = {this.state.items}/>
+                </CardActions>
+                <CardContent>
+                    <ContentView item = {this.state.item}/>
+                </CardContent>
+            </Card>
+        )}
 }
 
 export default App;
