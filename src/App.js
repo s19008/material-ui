@@ -1,5 +1,5 @@
 import React from 'react';
-import {Autocomplete }
+import { Autocomplete } from '@material-ui';
 import {
     TextField,
     Card,
@@ -22,38 +22,39 @@ const ActionView = props => {
     )
 
 
-const ContentView = props => {
-    const {id, name} = props.item
-    return (
-        <div>
-            <label>{id}</label>
-            <label>{name}</label>
-        </div>
-    )
-}
+    const ContentView = props => {
+        const {id, name} = props.item
+        return (
+            <div>
+                <label>{id}</label>
+                <label>{name}</label>
+            </div>
+        )
+    }
 
 
-class App extends React.Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            items:[
-                {id: 's19008', name: 'shinzato'} 
-            ], 
-            item : {id:'undef', name:'undef'}
+    class App extends React.Component {
+        constructor (props) {
+            super(props)
+            this.state = {
+                items:[
+                    {id: 's19008', name: 'shinzato'} 
+                ], 
+                item : {id:'undef', name:'undef'}
+            }
+        }
+        render () {
+            return (
+                <Card>
+                    <CardActions>
+                        <ActionView items = {this.state.items}/>
+                    </CardActions>
+                    <CardContent>
+                        <ContentView item = {this.state.item}/>
+                    </CardContent>
+                </Card>
+            )
         }
     }
-    render () {
-        return (
-            <Card>
-                <CardActions>
-                    <ActionView items = {this.state.items}/>
-                </CardActions>
-                <CardContent>
-                    <ContentView item = {this.state.item}/>
-                </CardContent>
-            </Card>
-        )}
-}
 
 export default App;
